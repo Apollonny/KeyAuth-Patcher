@@ -31,8 +31,8 @@ DWORD WINAPI runtime::start(void*)
     }
 
     const memory::FunctionCatalog functions(image);
-    logger::write(XS("image=%p size=%#zx fns=%zu"),
-                  image.base(), image.size(), functions.functions().size());
+    logger::write(XS("image ready size=%#zx fns=%zu"),
+                  image.size(), functions.functions().size());
 
     const resolver::AuthResolver resolver(image, functions);
     const auto targets = resolver.resolve();

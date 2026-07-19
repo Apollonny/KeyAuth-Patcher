@@ -1,0 +1,24 @@
+# Visual Studio and MSBuild user/build state
+.vs/
+*.user
+*.suo
+*.tlog
+*.lastbuildstate
+*.recipe
+*.log
+*.obj
+*.pdb
+*.idb
+*.ipdb
+*.iobj
+*.ilk
+*.exp
+*.dll
+*.exe
+*.vcxproj.FileListAbsolute.txt
+
+# Build output folders
+**/[Bb]in/
+**/[Oo]bj/
+**/[Dd]ebug/
+**/[Rr]elease/

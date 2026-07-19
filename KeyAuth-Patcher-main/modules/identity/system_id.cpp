@@ -118,7 +118,8 @@ void identity::init()
 
     g_init = true;
 
-    logger::write(XS("id: hwid=%s ip=%s"), g_hwid, g_ip);
+    // Never write hardware identifiers or local network addresses to logs.
+    logger::write(XS("identity initialized"));
 }
 
 const char* identity::hwid()       { return g_hwid;       }

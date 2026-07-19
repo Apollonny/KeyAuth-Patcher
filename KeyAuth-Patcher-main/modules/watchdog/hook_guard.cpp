@@ -94,7 +94,7 @@ void watchdog::register_hook(void* target, const char* name)
     snapshot(entry);
     g_entries.push_back(entry);
 
-    logger::write(XS("watchdog: +%s @ %p"), entry.name, target);
+    logger::write(XS("watchdog: +%s"), entry.name);
 }
 
 void watchdog::start()

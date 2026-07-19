@@ -20,7 +20,8 @@ namespace config
 
     inline constexpr const char* response_message = "Authenticated";
 
-    inline constexpr bool          log_to_file   = true;
+    // File logging is opt-in: diagnostics must not be persisted by default.
+    inline constexpr bool          log_to_file   = false;
     inline constexpr const wchar_t* log_filename  = L"keyauth_patch.log";
     inline constexpr bool          show_console  = false;
     inline constexpr const wchar_t* console_title = L"Debug Output";

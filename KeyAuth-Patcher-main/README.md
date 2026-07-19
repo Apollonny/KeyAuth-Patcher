@@ -181,11 +181,14 @@ KeyAuth-Patcher/
 
 ## Log Output
 
-Logs are appended to `%TEMP%\keyauth_patch.log`.
+File logging is disabled by default. If enabled in `modules/config/config.hpp`,
+diagnostic logs are appended to `%TEMP%\keyauth_patch.log` and exclude HWIDs,
+local IP addresses, usernames, owner identifiers, subscription names, and
+subscription expiry values.
 
 ```
 [12:00:01.002] [T1234] init
-[12:00:01.005] [T1234] id: hwid=A1B2C3D4-E5F60718-9ABCDEF0 ip=192.168.1.10
+[12:00:01.005] [T1234] identity initialized
 [12:00:01.890] [T1234] ready
 [12:00:03.892] [T5678] watchdog: running, 5 hooks
 ```
