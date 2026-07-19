@@ -85,8 +85,7 @@ auth::Profile::Profile(resolver::ObjectLayout layout)
         std::memcpy(&allocate_, &raw, sizeof(allocate_));
     }
 
-    logger::write(XS("profile allocator: %p"),
-                  reinterpret_cast<void*>(allocate_));
+    logger::write(XS("profile allocator resolved"));
 }
 
 bool auth::Profile::ready() const
@@ -114,7 +113,7 @@ void auth::Profile::apply_response(void* instance) const
                  config::response_message,
                  XS("response.message"));
 
-    logger::write(XS("response accepted for %p"), instance);
+    logger::write(XS("response accepted"));
 }
 
 // ---------------------------------------------------------------------------
@@ -165,9 +164,9 @@ void auth::Profile::keep_owner_atom(void* instance) const
         return;
 
     const ATOM atom = GlobalAddAtomA(owner);
-    logger::write(XS("owner atom: %.*s -> %#x"),
-                  static_cast<int>(length), owner,
-                  static_cast<unsigned int>(atom));
+    logger::write(atom != 0
+        ? XS("owner atom initialized")
+        : XS("owner atom initialization failed"));
 }
 
 // ---------------------------------------------------------------------------
@@ -180,7 +179,7 @@ bool auth::Profile::write_string(void* object,
 {
     if (!accessible(object, 0x20, true))
     {
-        logger::write(XS("%s: invalid string object %p"), field, object);
+        logger::write(XS("%s: invalid string object"), field);
         return false;
     }
 
@@ -219,7 +218,9 @@ bool auth::Profile::write_string(void* object,
 
     std::memcpy(destination, replacement, wanted + 1);
     *length = wanted;
-    logger::write(XS("%s = %s"), field, replacement);
+    // Field names are useful diagnostics; values may contain identity or
+    // account data and must never be written to a log.
+    logger::write(XS("%s updated"), field);
     return true;
 }
 
@@ -306,8 +307,7 @@ void auth::Profile::apply_subscriptions(void* instance) const
         if (initialize_small_string(item, entry.name) &&
             initialize_small_string(item + 0x20, entry.expiry))
         {
-            logger::write(XS("subscription[%zu] = %s / %s"),
-                          i, entry.name, entry.expiry);
+            logger::write(XS("subscription[%zu] initialized"), i);
         }
     }
 }

@@ -78,9 +78,8 @@ namespace
         const std::size_t shown = (std::min)(std::size_t{ 3 }, candidates.size());
         for (std::size_t i = 0; i < shown; ++i)
         {
-            logger::write(XS("%s #%zu: %p score=%d size=%zu"),
+            logger::write(XS("%s #%zu: score=%d size=%zu"),
                 label, i + 1,
-                candidates[i].function->begin,
                 candidates[i].score,
                 candidates[i].function->size());
         }
@@ -98,7 +97,7 @@ namespace
             return nullptr;
         }
 
-        logger::write(XS("%s: %p"), label, candidates.front().function->begin);
+        logger::write(XS("%s: selected"), label);
         return candidates.front().function;
     }
 

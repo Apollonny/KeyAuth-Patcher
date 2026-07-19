@@ -60,6 +60,5 @@ void native::restore_ntprotect_entry()
     DWORD ignored = 0;
     VirtualProtect(protect_memory, sizeof(entry), previous_protection, &ignored);
 
-    logger::write(XS("ntdll_patch: NtProtectVirtualMemory restored (syscall=%#x)"),
-                  static_cast<unsigned>(service_number));
+    logger::write(XS("ntdll_patch: NtProtectVirtualMemory restored"));
 }
