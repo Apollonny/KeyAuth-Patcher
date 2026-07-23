@@ -177,15 +177,3 @@ KeyAuth-Patcher/
 | `advapi32.lib` | Registry query (`MachineGuid`) |
 | Windows SDK | Win32 API and PE structures |
 
----
-
-## Log Output
-
-Logs are appended to `%TEMP%\keyauth_patch.log`.
-
-```
-[12:00:01.002] [T1234] init
-[12:00:01.005] [T1234] id: hwid=A1B2C3D4-E5F60718-9ABCDEF0 ip=192.168.1.10
-[12:00:01.890] [T1234] ready
-[12:00:03.892] [T5678] watchdog: running, 5 hooks
-```
